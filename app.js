@@ -17,22 +17,37 @@ const questions = [
     {"message": "Enter ID" , name:"id"},
     {"message": "Enter email" , name:"email"}
 ];
+const extraQuestion ={
+    Manager: {
+        "message": "What is your office number" , name:"extra"
+    },
+    Engineer: {"message": "What is your Github" , name:"extra"},
+    Intern:{"message": "What school did you graduate or program from?" , name:"extra"}
+}
+
+const classes = {
+    Manager,
+    Intern,
+    Engineer
+}
+const employees =[]
+function makeTeam (){
 
 inquirer.prompt(questions)
 .then(function(response){ 
-    
-
- const employees = [response]
- render(employees)
-
-writeFile()
-
-
+    inquirer.prompt(extraQuestion[response.role]) 
+.then(({extra})=>{
+    const newEmp = new classes[response.role](response.name,response.id,response.email,extra)
+employees.push(newEmp)
+inquirer.prompt({"message":"Would you like to add more employees", name:"confirmation", type:"confirm"})
+.then(function(confirm){  confirm.confirmation ? makeTeam(): writeFile(render(employees))})
 })
 
+})
+}
 
-function writeFile(){
-    
+function writeFile(html){
+    fs.writeFile(outputPath, html, (err)=>{})
 }
 
 // Write code to use inquirer to gather information about the development team members,
