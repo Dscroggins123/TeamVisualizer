@@ -1,0 +1,18 @@
+.jumbotron{
+    background-color: rgb(250, 172, 27);
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: bolder;
+}
+.card{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    margin: auto;
+    border-radius: 25px;
+    text-align: center;
+}
+body{
+background: rgb(253, 249, 244);
+}
+a{
+    color: rgb(250,172,27);
+}
